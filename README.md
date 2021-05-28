@@ -27,11 +27,11 @@ optional arguments:
 ```
 ## Preprocessing necessary to leave WAN administrative at:
 Start counting from 0.
-- File: WAN Planning at column: 3.
-- File: WiFi Scenario 1 at column: 6.
-- File: WiFi Scenario 2 at column: 3.
+- File WAN Planning at column: 3.
+- File WiFi Scenario 1 at column: 6.
+- File WiFi Scenario 2 at column: 3.
 
 ## TODO:
-- [] Replace column number to field name when importing data.
-- [] Specify type of scenario.
-- [] Specify date of installation if available.
+- [ ] Replace column number to field name when importing data.
+- [ ] Specify type of scenario.
+- [ ] Specify date of installation if available.
