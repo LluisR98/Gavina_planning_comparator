@@ -1,6 +1,4 @@
 #
-# Version: 1.01
-#
 # Requirements: 
 #   - Python 3.x installed, programmed with Python 3.9.x.
 #   - Excel Planning Scenario 1 and 2 converted to CSV.
@@ -10,15 +8,10 @@
 #   - $ planning-analyser.py --wan [WAN_planning.csv] --scenario1 [Scenario_1_planning.csv] --scenario2 [Scenario_2_planning.csv]
 #
 # Preprocessing necessary to leave administrative at:
-#   - Start counting from 0.
-#   - File: WAN Planning at column: 3.
-#   - File: WiFi Scenario 1 at column: 6.
-#   - File: WiFi Scenario 2 at column: 3.
-#
-# TO DO:
-#   - Replace column number to field name when importing data.
-#   - Specify type of scenario.
-#   - Specify date of installation if available
+# Start counting from 0.
+#   - File WAN Planning at column: 3.
+#   - File WiFi Scenario 1 at column: 6.
+#   - File WiFi Scenario 2 at column: 3.
 #
 
 # Import time
@@ -31,9 +24,10 @@ from csv import writer
 # Parse arguments 
 def get_args():
     parser = argparse.ArgumentParser(description="Tool to cross-check planning schedules of Gavina WAN and Gavina WiFI projects.")
-    parser.add_argument('--wan', required=True, help='CSV WAN planning. Please put the WAN Admin in column number 3 (starting from 0).', default="none")
-    parser.add_argument('--scenario1', required=True, help='CSV WiFi planning scenario 1. Please put the WAN Admin in column number 6 (starting from 0).', default="none")
-    parser.add_argument('--scenario2', required=True, help='CSV WiFi planning scenario 2. Please put the WAN Admin in column number 3 (starting from 0).', default="none")
+    requiredvalues = parser.add_argument_group('Required arguments')
+    requiredvalues.add_argument('-wan', required=True, help='CSV WAN planning. Please put the WAN Admin in column number 3 (starting from 0).')
+    requiredvalues.add_argument('-scenario1', required=True, help='CSV WiFi planning scenario 1. Please put the WAN Admin in column number 6 (starting from 0).')
+    requiredvalues.add_argument('-scenario2', required=True, help='CSV WiFi planning scenario 2. Please put the WAN Admin in column number 3 (starting from 0).')
     args = parser.parse_args()
     return args
 

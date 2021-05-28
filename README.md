@@ -1,5 +1,5 @@
 # Gavina Planing Analyser
-###### Version: 1.01
+###### Version: 1.02
 
 Little code to cross the planning Excels of "Gavina WiFi" and "Gavina WAN" projects, these projects are implemented by Telefónica and Generalitat de Catalunya.
 
