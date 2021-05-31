@@ -27,4 +27,5 @@ Required arguments:
 ```
 
 ## TODO:
-- [ ] Nothing?
+- [ ] Take the current date to avoid displaying old entries.
+- [ ] Nothing more?

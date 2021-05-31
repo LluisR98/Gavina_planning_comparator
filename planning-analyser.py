@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
 # CSV WAN
             try:
-                with open(args.wan, 'r', encoding='UTF-8') as wan_planning:
+                with open(args.wan, 'r', encoding='UTF-8-sig') as wan_planning:
                     wan = csv.reader(wan_planning, delimiter=';')
                     lines = 0
                     for row in wan:
@@ -78,7 +78,7 @@ if __name__ == "__main__":
 
 # CSV Scenario 1
             try:
-                with open(args.scenario1, 'r', encoding='UTF-8') as scenario1_planning:
+                with open(args.scenario1, 'r', encoding='UTF-8-sig') as scenario1_planning:
                     scenario1 = csv.reader(scenario1_planning, delimiter=';')
                     lines = 0
                     for row in scenario1:
@@ -100,7 +100,7 @@ if __name__ == "__main__":
 
 # CSV Scenario 2
             try:
-                with open(args.scenario2, 'r', encoding='UTF-8') as scenario2_planning:
+                with open(args.scenario2, 'r', encoding='UTF-8-sig') as scenario2_planning:
                     scenario2 = csv.reader(scenario2_planning, delimiter=';')
                     lines = 0
                     for row in scenario2:
@@ -110,12 +110,13 @@ if __name__ == "__main__":
                         else:
                             scenario2_data.append(row)
                             lines += 1
+#                    print(scenario2_columns)       # If execution fails, add comments to try/except and see how it is stored.
                     scenario2_index = scenario2_columns.index("WAN")
                     scenario2_cod_centro = scenario2_columns.index("Codi")
                     scenario2_nom_centro = scenario2_columns.index("Centre")
                     scenario2_install = scenario2_columns.index("Data")
                 for scenario2_school in scenario2_data:
-                    scenario2_school_data.append(scenario2_school[scenario2_index] + ';' + scenario2_school[scenario1_cod_centro] + ';' + scenario2_school[scenario2_nom_centro] + ';Scenario 2;' + scenario2_school[scenario2_install])
+                    scenario2_school_data.append(scenario2_school[scenario2_index] + ';' + scenario2_school[scenario2_cod_centro] + ';' + scenario2_school[scenario2_nom_centro] + ';Scenario 2;' + scenario2_school[scenario2_install])
                     scenario2_admin.append(scenario2_school[scenario2_index])
             except:
                 print("Error while processing file: " + args.scenario2 + ".")
@@ -149,7 +150,8 @@ if __name__ == "__main__":
                         for i in scenario1_school_data:
                             temp = i.split(";")
                             if temp[0] == school1:
-                                myData.append(temp)
+                                if temp[0] != '':
+                                    myData.append(temp)
                     writer.writerows(myData)
 
 # Add Scenario 2 matches
@@ -160,7 +162,7 @@ if __name__ == "__main__":
                                 myData.append(temp)
                     writer.writerows(myData)
 
-                    print("Success!")
+                    print("\nSuccess!")
             except:
                 print("Error while processing the file: " + wifi_transformed_filename + ".")
                 sys.exit()
