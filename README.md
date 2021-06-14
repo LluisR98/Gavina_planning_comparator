@@ -1,5 +1,4 @@
 # Gavina Planing Analyser
-###### Version: 1.02
 
 Little code to cross the planning Excels of "Gavina WiFi" and "Gavina WAN" projects, these projects are implemented by Telefónica and Generalitat de Catalunya.
 
@@ -28,4 +27,5 @@ Required arguments:
 
 ## TODO:
 - [ ] Take the current date to avoid displaying old entries.
+- [ ] Add additional validation controls to correct possible errors in pretreatment.
 - [ ] Nothing more?

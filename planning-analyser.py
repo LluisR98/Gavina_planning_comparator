@@ -5,7 +5,7 @@
 #   - Excel Planning WAN converted to CSV.
 #
 # Code execution:
-#   - $ planning-analyser.py --wan [WAN_planning.csv] --scenario1 [Scenario_1_planning.csv] --scenario2 [Scenario_2_planning.csv]
+#   - $ planning-analyser.py -wan [WAN_planning.csv] -scenario1 [Scenario_1_planning.csv] -scenario2 [Scenario_2_planning.csv]
 #
 
 # Import time
@@ -66,7 +66,8 @@ if __name__ == "__main__":
                         else:
                             wan_data.append(row)
                             lines += 1
-                    wan_index = wan_columns.index("ADMINISTRATIVO")
+#                    print(wan_columns)       # If execution fails, add comments to try/except and see how it is stored.
+                    wan_index = wan_columns.index("ADMIN")
                     wan_cod_centro = wan_columns.index("COD_CENTRO")
                     wan_nom_centro = wan_columns.index("NOM_SEDE")
                 for wan_school in wan_data:
@@ -88,6 +89,7 @@ if __name__ == "__main__":
                         else:
                             scenario1_data.append(row)
                             lines += 1
+#                    print(scenario1_columns)       # If execution fails, add comments to try/except and see how it is stored.
                     scenario1_index = scenario1_columns.index("Propietario conectividad")
                     scenario1_cod_centro = scenario1_columns.index("Codi")
                     scenario1_nom_centro = scenario1_columns.index("Centre")
@@ -144,7 +146,12 @@ if __name__ == "__main__":
                 result = open(wifi_transformed_filename, 'w')
                 with result:
                     writer = csv.writer(result)
-
+# Add Scenario 2 matches
+                    for school2 in admin_scenario2_match:
+                        for i in scenario2_school_data:
+                            temp = i.split(";")
+                            if temp[0] == school2:
+                                myData.append(temp)
 # Add Scenario 1 matches
                     for school1 in admin_scenario1_match:
                         for i in scenario1_school_data:
@@ -152,14 +159,7 @@ if __name__ == "__main__":
                             if temp[0] == school1:
                                 if temp[0] != '':
                                     myData.append(temp)
-                    writer.writerows(myData)
 
-# Add Scenario 2 matches
-                    for school2 in admin_scenario2_match:
-                        for i in scenario2_school_data:
-                            temp = i.split(";")
-                            if temp[0] == school2:
-                                myData.append(temp)
                     writer.writerows(myData)
 
                     print("\nSuccess!")
