@@ -12,7 +12,7 @@ Little code to cross the planning Excels of "Gavina WiFi" and "Gavina WAN" proje
 ## Code execution:
 ```
 > planning-analyser.py -h
-Usage: planning-analyser.py [-h] -wan WAN -scenario1 SCENARIO1 -scenario2 SCENARIO2
+Usage: planning-analyser.py [-h] --wan WAN --scenario1 SCENARIO1 --scenario2 SCENARIO2
 
 Tool to cross-check planning schedules of Gavina WAN and Gavina WiFI projects.
 
@@ -20,12 +20,7 @@ optional arguments:
   -h, --help            show this help message and exit
 
 Required arguments:
-  -wan WAN              CSV WAN planning.
-  -scenario1 SCENARIO1  CSV WiFi planning scenario 1.
-  -scenario2 SCENARIO2  CSV WiFi planning scenario 2.
+  --wan WAN              CSV WAN planning.
+  --scenario1 SCENARIO1  CSV WiFi planning scenario 1.
+  --scenario2 SCENARIO2  CSV WiFi planning scenario 2.
 ```
-
-## TODO:
-- [ ] Take the current date to avoid displaying old entries.
-- [ ] Add additional validation controls to correct possible errors in pretreatment.
-- [ ] Nothing more?
