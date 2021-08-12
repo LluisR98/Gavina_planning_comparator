@@ -5,7 +5,7 @@
 #   - Excel Planning WAN converted to CSV.
 #
 # Code execution:
-#   - $ planning-analyser.py -wan [WAN_planning.csv] -scenario1 [Scenario_1_planning.csv] -scenario2 [Scenario_2_planning.csv]
+#   - $ planning-analyser.py --wan [WAN_planning.csv] --scenario1 [Scenario_1_planning.csv] --scenario2 [Scenario_2_planning.csv]
 #
 
 # Import time
@@ -18,9 +18,9 @@ import os
 def get_args():
     parser = argparse.ArgumentParser(description="Tool to cross-check planning schedules of Gavina WAN and Gavina WiFI projects.")
     requiredvalues = parser.add_argument_group('Required arguments')
-    requiredvalues.add_argument('-wan', required=True, help='CSV WAN planning.')
-    requiredvalues.add_argument('-scenario1', required=True, help='CSV WiFi planning scenario 1.')
-    requiredvalues.add_argument('-scenario2', required=True, help='CSV WiFi planning scenario 2.')
+    requiredvalues.add_argument('--wan', required=True, help='CSV WAN planning.')
+    requiredvalues.add_argument('--scenario1', required=True, help='CSV WiFi planning scenario 1.')
+    requiredvalues.add_argument('--scenario2', required=True, help='CSV WiFi planning scenario 2.')
     args = parser.parse_args()
     return args
 
@@ -71,6 +71,9 @@ if __name__ == "__main__":
                     wan_cod_centro = wan_columns.index("COD_CENTRO")
                     wan_nom_centro = wan_columns.index("NOM_SEDE")
                 for wan_school in wan_data:
+# Correct the length of the value
+                    if len(wan_school[wan_index]) != 14:
+                        wan_school[wan_index] = '0' + wan_school[wan_index]
                     wan_school_data.append(wan_school[wan_index] + ';' + wan_school[wan_cod_centro] + ';' + wan_school[wan_nom_centro])
                     wan_admin.append(wan_school[wan_index])
             except:
@@ -94,6 +97,9 @@ if __name__ == "__main__":
                     scenario1_cod_centro = scenario1_columns.index("Codi")
                     scenario1_nom_centro = scenario1_columns.index("Centre")
                 for scenario1_school in scenario1_data:
+# Correct the length of the value
+                    if len(scenario1_school[scenario1_index]) != 14:
+                        wan_school[scenario1_index] = '0' + scenario1_school[scenario1_index]
                     scenario1_school_data.append(scenario1_school[scenario1_index] + ';' + scenario1_school[scenario1_cod_centro] + ';' + scenario1_school[scenario1_nom_centro] + ';Scenario 1')
                     scenario1_admin.append(scenario1_school[scenario1_index])
             except:
@@ -118,6 +124,9 @@ if __name__ == "__main__":
                     scenario2_nom_centro = scenario2_columns.index("Centre")
                     scenario2_install = scenario2_columns.index("Data")
                 for scenario2_school in scenario2_data:
+# Correct the length of the value
+                    if len(scenario2_school[scenario2_index]) != 14:
+                        wan_school[scenario2_index] = '0' + scenario2_school[scenario2_index]
                     scenario2_school_data.append(scenario2_school[scenario2_index] + ';' + scenario2_school[scenario2_cod_centro] + ';' + scenario2_school[scenario2_nom_centro] + ';Scenario 2;' + scenario2_school[scenario2_install])
                     scenario2_admin.append(scenario2_school[scenario2_index])
             except:
@@ -159,9 +168,8 @@ if __name__ == "__main__":
                             if temp[0] == school1:
                                 if temp[0] != '':
                                     myData.append(temp)
-
+# Write the values ​​in the final file
                     writer.writerows(myData)
-
                     print("\nSuccess!")
             except:
                 print("Error while processing the file: " + wifi_transformed_filename + ".")
